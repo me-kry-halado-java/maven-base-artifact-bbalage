@@ -1,22 +1,15 @@
-package hu.meiit.haladojava.calculator;
+package hu.meiit.haladojava;
+
+import hu.meiit.haladojava.logic.Expression;
 
 import java.util.Scanner;
 
+/**
+ * Hello world!
+ *
+ */
 public class App 
 {
-    //Abban az osztályban, amiben a main van, más nem lehet.
-
-    private static String[] parse(String expression) throws Exception {
-        String[] ret = expression.split(" ");
-        if (ret.length != 3) {
-            String[] nums = expression.split("[\\+\\-\\*\\/]");
-            if (nums.length != 2) {
-                throw new Exception();
-            }
-            String operand = expression.split("[0-9]")[1];
-        }
-        return ret;
-    }
 
     private static String getExpressionFromStandardInput() {
         Scanner scanner = new Scanner(System.in);
@@ -43,9 +36,8 @@ public class App
     {
         try {
             String expression = getExpressionFromStandardInput();
-            String[] tokens = parse(expression);
+            Expression expression1 = ExpressionMaker.parse(expression);
             assertTokens(tokens);
-            Expression expression1 = getAsExpression(tokens);
             String result = expression1.executeExpression();
             System.out.print(result);
         }

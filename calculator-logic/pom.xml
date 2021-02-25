@@ -4,18 +4,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>hu.meiit.haladojava</groupId>
+    <artifactId>calculator-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../calculator-parent</relativePath>
+  </parent>
+
   <groupId>hu.meiit.haladojava</groupId>
-  <artifactId>calculator</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>calculator-logic</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <modules>
-    <module>calculator-console</module>
-    <module>calculator-logic</module>
-  </modules>
-
-  <name>calculator</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
+  <name>console-logic</name>
 </project>

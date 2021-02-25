@@ -1,6 +1,8 @@
 package hu.meiit.haladojava;
 
+import hu.meiit.haladojava.logic.Executor;
 import hu.meiit.haladojava.logic.Expression;
+import hu.meiit.haladojava.logic.IExecutor;
 
 import java.util.Scanner;
 
@@ -24,22 +26,13 @@ public class App
         }
     }
 
-    private static Expression getAsExpression(String[] tokens) {
-        String operator = tokens[1];
-        int operand1 = Integer.parseInt(tokens[0]);
-        int operand2 = Integer.parseInt(tokens[2]);
-        Expression expression = new Expression(operand1, operator, operand2);
-        return expression;
-    }
-
     public static void main( String[] args )
     {
         try {
-            String expression = getExpressionFromStandardInput();
-            Expression expression1 = ExpressionMaker.parse(expression);
-            assertTokens(tokens);
-            String result = expression1.executeExpression();
-            System.out.print(result);
+            String strExpression = getExpressionFromStandardInput();
+            Expression expression = ExpressionMaker.parse(strExpression);
+            IExecutor executor = new Executor();
+            System.out.print(executor.executeExpression(expression));
         }
         catch (Exception e) {
             System.out.println("-");

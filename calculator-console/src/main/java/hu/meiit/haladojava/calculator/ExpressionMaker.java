@@ -1,4 +1,4 @@
-package hu.meiit.haladojava;
+package hu.meiit.haladojava.calculator;
 
 import hu.meiit.haladojava.logic.Expression;
 import hu.meiit.haladojava.logic.Operation;
@@ -23,9 +23,10 @@ public class ExpressionMaker {
             catch (NumberFormatException e) {
                 throw new ExpressionInvalidException();
             }
-            operator = getOperator(expression);
         }
-        numericTokens = getNumericTokens(tokens);
+        else {
+            numericTokens = getNumericTokens(tokens);
+        }
         operator = getOperator(expression);
         return new Expression(numericTokens[0], numericTokens[1], convertOperatorToOperation(operator));
     }
@@ -52,16 +53,18 @@ public class ExpressionMaker {
     }
 
     private static char getOperator(String expression) throws ExpressionInvalidException {
-        String strOperand = expression.split("[0-9]")[1].trim();
-        if(strOperand.length() != 1) {
-            throw new ExpressionInvalidException();
+        char operator = 'Đ';
+        for(char searchedOperator : acceptedOperations) {
+            int position = expression.indexOf(searchedOperator);
+            if(position > 0) {
+                operator = searchedOperator;
+            }
         }
-        char operand = strOperand.charAt(0);
-        if(isAcceptedOperator(operand)) {
-            return operand;
+        if(operator == 'Đ') {
+            throw new ExpressionInvalidException();
         }
         else {
-            throw new ExpressionInvalidException();
+            return operator;
         }
     }
 

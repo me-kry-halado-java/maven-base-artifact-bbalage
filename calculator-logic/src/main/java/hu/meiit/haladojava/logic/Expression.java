@@ -22,4 +22,9 @@ public class Expression {
     public Operation getOperation() {
         return operation;
     }
+
+    @Override
+    public String toString() {
+        return operand1 + " " + operation.getOperator() + " " + operand2;
+    }
 }

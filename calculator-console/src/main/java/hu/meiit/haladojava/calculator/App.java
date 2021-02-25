@@ -1,5 +1,6 @@
-package hu.meiit.haladojava;
+package hu.meiit.haladojava.calculator;
 
+import hu.meiit.haladojava.logic.CalculatorException;
 import hu.meiit.haladojava.logic.Executor;
 import hu.meiit.haladojava.logic.Expression;
 import hu.meiit.haladojava.logic.IExecutor;
@@ -20,12 +21,6 @@ public class App
         return expression;
     }
 
-    private static void assertTokens(String[] tokens) throws Exception {
-        if (tokens.length != 3) {
-            throw new Exception("Wrong input.");
-        }
-    }
-
     public static void main( String[] args )
     {
         try {
@@ -34,7 +29,10 @@ public class App
             IExecutor executor = new Executor();
             System.out.print(executor.executeExpression(expression));
         }
-        catch (Exception e) {
+        catch (ExpressionInvalidException e) {
+            System.out.println("-");
+        }
+        catch (CalculatorException e) {
             System.out.println("-");
         }
     }
